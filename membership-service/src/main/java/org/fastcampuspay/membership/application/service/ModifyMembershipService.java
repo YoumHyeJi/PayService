@@ -4,9 +4,9 @@ import com.fastcampuspay.common.UseCase;
 import lombok.RequiredArgsConstructor;
 import org.fastcampuspay.membership.adapter.out.persistence.MembershipJpaEntity;
 import org.fastcampuspay.membership.adapter.out.persistence.MembershipMapper;
-import org.fastcampuspay.membership.application.port.in.RegisterMembershipCommand;
-import org.fastcampuspay.membership.application.port.in.RegisterMembershipUseCase;
-import org.fastcampuspay.membership.application.port.out.RegisterMembershipPort;
+import org.fastcampuspay.membership.application.port.in.ModifyMembershipCommand;
+import org.fastcampuspay.membership.application.port.in.ModifyMembershipUseCase;
+import org.fastcampuspay.membership.application.port.out.ModifyMembershipPort;
 import org.fastcampuspay.membership.domain.Membership;
 
 import javax.transaction.Transactional;
@@ -14,18 +14,19 @@ import javax.transaction.Transactional;
 @UseCase
 @RequiredArgsConstructor
 @Transactional
-public class RegisterMembershipService implements RegisterMembershipUseCase{
+public class ModifyMembershipService implements ModifyMembershipUseCase {
 
-    private final RegisterMembershipPort registerMembershipPort;
+    private final ModifyMembershipPort modifyMembershipPort;
 
     private final MembershipMapper membershipMapper;
 
     @Override
-    public Membership registerMembership(RegisterMembershipCommand command) {
+    public Membership modifyMembership(ModifyMembershipCommand command) {
 
         // command -> DB
         // port -> adapter
-        MembershipJpaEntity jpaEntity = registerMembershipPort.createMembership(
+        MembershipJpaEntity jpaEntity = modifyMembershipPort.modifyMembership(
+                new Membership.MembershipId(command.getMembershipId()),
                 new Membership.MembershipName(command.getName()),
                 new Membership.MembershipEmail(command.getEmail()),
                 new Membership.MembershipAddress(command.getAddress()),

@@ -1,16 +1,14 @@
 package org.fastcampuspay.membership.application.service;
 
+import com.fastcampuspay.common.UseCase;
 import lombok.RequiredArgsConstructor;
 import org.fastcampuspay.membership.adapter.out.persistence.MembershipJpaEntity;
 import org.fastcampuspay.membership.adapter.out.persistence.MembershipMapper;
 import org.fastcampuspay.membership.application.port.in.FindMembershipCommand;
 import org.fastcampuspay.membership.application.port.in.FindMembershipUseCase;
 import org.fastcampuspay.membership.application.port.out.FindMembershipPort;
-import org.fastcampuspay.membership.common.UseCase;
 import org.fastcampuspay.membership.domain.Membership;
-import org.springframework.http.ResponseEntity;
 
-import java.util.Optional;
 
 @UseCase
 @RequiredArgsConstructor
