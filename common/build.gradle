@@ -33,6 +33,12 @@ dependencies {
 
     implementation 'org.jetbrains:annotations:23.0.0'
 
+    // AOP
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+
+    // Producer
+    implementation 'org.springframework.kafka:spring-kafka'
+
 }
 
 apply plugin: 'java'

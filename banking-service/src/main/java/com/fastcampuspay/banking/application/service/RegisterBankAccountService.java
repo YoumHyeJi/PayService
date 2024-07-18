@@ -6,6 +6,8 @@ import com.fastcampuspay.banking.adapter.out.persistence.RegisteredBankAccountJp
 import com.fastcampuspay.banking.adapter.out.persistence.RegisteredBankAccountMapper;
 import com.fastcampuspay.banking.application.port.in.RegisterBankAccountCommand;
 import com.fastcampuspay.banking.application.port.in.RegisterBankAccountUseCase;
+import com.fastcampuspay.banking.application.port.out.GetMembershipPort;
+import com.fastcampuspay.banking.application.port.out.MembershipStatus;
 import com.fastcampuspay.banking.application.port.out.RegisterBankAccountPort;
 import com.fastcampuspay.banking.application.port.out.RequestBankAccountInfoPort;
 import com.fastcampuspay.banking.domain.RegisteredBankAccount;
@@ -25,13 +27,18 @@ public class RegisterBankAccountService implements RegisterBankAccountUseCase {
 
     private final RequestBankAccountInfoPort requestBankAccountInfoPort;
 
+    private final GetMembershipPort getMembershipPort;
+
     @Override
     public RegisteredBankAccount registerRegisterBankAccount(RegisterBankAccountCommand command) {
 
         // 은행 계좌를 등록해야 하는 서비스 (비즈니스 로직)
 
         // 멤버서비스도 확인? 여기서는 스킵!
-
+        MembershipStatus membershipStatus = getMembershipPort.getMembership(command.getMembershipId());
+        if(!membershipStatus.isValid()){
+            return null;
+        }
 
         // 1. 외부 실제 은행에 등록이 가능한 계좌인지(정상인지) 확인한다
         // 외부 은행에 이 계좌 정상인지? 확인이 필요해요.

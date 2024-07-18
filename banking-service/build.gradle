@@ -58,6 +58,8 @@ dependencies {
 
     implementation project(path: ':common')
 
+    implementation 'org.springframework.kafka:spring-kafka'
+
 }
 
 apply plugin: 'java'
