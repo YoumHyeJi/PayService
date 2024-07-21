@@ -16,7 +16,7 @@ compileJava {
     targetCompatibility = 11
 }
 
-group = 'com.fastcampuspay.money'
+group = 'com.fastcampuspay.taskconsumer'
 version = '1.0-SNAPSHOT'
 
 repositories {
@@ -47,18 +47,17 @@ dependencies {
 
     implementation group: 'javax.persistence', name: 'javax.persistence-api', version: '2.2'
 
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+//    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
     implementation 'org.jetbrains:annotations:23.0.0'
 
     testImplementation 'junit:junit:4.13.1'
 
 //    runtimeOnly 'com.h2database:h2'
-    runtimeOnly 'mysql:mysql-connector-java'
+//    runtimeOnly 'mysql:mysql-connector-java'
 
     implementation project(path: ':common')
 
-    // Producer
     implementation 'org.springframework.kafka:spring-kafka'
 
 }
@@ -89,4 +88,8 @@ docker {
     // Dockerfile에 전달할 인자
     buildArgs(['JAR_FILE': tasks.bootJar.outputs.files.singleFile.name])
 }
+
+
+
+
 
